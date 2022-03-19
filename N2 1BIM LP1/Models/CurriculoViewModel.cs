@@ -28,6 +28,5 @@ namespace N2_1BIM_LP1.Models
         public string Experiencia3 { get; set; }
         public string Idiomas { get; set; }
 
-
     }
 }

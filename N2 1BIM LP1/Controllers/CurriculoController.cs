@@ -22,6 +22,7 @@ namespace N2_1BIM_LP1.Controllers
             {
                 return View("Error", new ErrorViewModel(er.Message));
             }
+
         }
         public IActionResult Create()
         {

@@ -78,7 +78,7 @@ namespace N2_1BIM_LP1.DAO
         {
             using (SqlConnection cx = ConexaoBD.GetConexao())
             {
-                string sql = "select * from jogos where cpf = " + cpf;
+                string sql = "select * from curriculos where cpf = " + cpf;
                 DataTable tabela = HelperDAO.ExecutaSQL(sql, null);
                 if (tabela.Rows.Count == 0)
                     return null;
@@ -96,7 +96,7 @@ namespace N2_1BIM_LP1.DAO
             cv.Telefone = Convert.ToString(registro["telefone"]);
             cv.Email = Convert.ToString(registro["email"]);
             cv.PretensaoSalarial = Convert.ToSingle(registro["pretensaoSalarial"]);
-            cv.CargoPretendido = Convert.ToString(registro["cargoPretendido"]);
+            cv.CargoPretendido = Convert.ToString(registro["cargoPretentido"]); /* pus errado aqui, pois é assim que está no banco, para consertar despois devemos primeiro mudar o banco */
             cv.FormacaoAcademica1 = Convert.ToString(registro["formacaoAcademica1"]);
             cv.FormacaoAcademica2 = Convert.ToString(registro["formacaoAcademica2"]);
             cv.FormacaoAcademica3 = Convert.ToString(registro["formacaoAcademica3"]);
@@ -114,7 +114,7 @@ namespace N2_1BIM_LP1.DAO
         {
             using (var cx = ConexaoBD.GetConexao())
             {
-                List<CurriculoViewModel> listaJogos = new List<CurriculoViewModel>();
+                List<CurriculoViewModel> lista_de_curriculos = new List<CurriculoViewModel>();
                 string sql = "select * from curriculos";
                 DataTable tabela = HelperDAO.ExecutaSQL(sql, null);
                 if (tabela.Rows.Count == 0)
@@ -122,9 +122,9 @@ namespace N2_1BIM_LP1.DAO
                 else
                 {
                     for (int i = 0; i < tabela.Rows.Count; i++)
-                        listaJogos.Add(MontaModel(tabela.Rows[i]));
+                        lista_de_curriculos.Add(MontaModel(tabela.Rows[i]));
                 }
-                return listaJogos;
+                return lista_de_curriculos;
             }
         }
     }
