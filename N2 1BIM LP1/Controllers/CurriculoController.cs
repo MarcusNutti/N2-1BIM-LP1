@@ -15,7 +15,7 @@ namespace N2_1BIM_LP1.Controllers
             try
             {
                 CurriculoDAO dao = new CurriculoDAO();
-                var lista = dao.ListaJogos();
+                var lista = dao.ListaCurriculos();
                 return View(lista);
             }
             catch (Exception er)
@@ -24,9 +24,26 @@ namespace N2_1BIM_LP1.Controllers
             }
 
         }
-        public IActionResult Create()
+        public IActionResult FormCadastro ()
+        {
+            return View();
+        }
+        public IActionResult Create ()
         {
             return View("Form");
+        }
+        public IActionResult Salvar (CurriculoViewModel cv)
+        {
+            try
+            {
+                CurriculoDAO dao = new CurriculoDAO ();
+                dao.Inserir(cv);
+                return RedirectToAction("FormCadastro");
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.Message));
+            }
         }
     }
 }

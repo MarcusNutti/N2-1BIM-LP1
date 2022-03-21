@@ -31,20 +31,22 @@ namespace N2_1BIM_LP1.DAO
             parametros[14] = new SqlParameter("experiencia3", cv.Experiencia3);
             parametros[15] = new SqlParameter("idiomas", cv.Idiomas);
 
+            SubstituiNULL(ref parametros);
+
             return parametros;
         }
 
-        public void Inserir(CurriculoViewModel jogo)
+        public void Inserir(CurriculoViewModel cv)
         {
             string sql = "insert into curriculos" +
-                         "(cpf, nome, endereco, telefone, email, pretensaoSalarial, cargoPretendido, " +
+                         "(cpf, nome, endereco, telefone, email, pretensaoSalarial, cargoPretentido, " +
                          "formacaoAcademica1, formacaoAcademica2, formacaoAcademica3, formacaoAcademica4, formacaoAcademica5," +
                          "experiencia1, experiencia2, experiencia3, idiomas) " +
                          "values " +
                          "(@cpf, @nome, @endereco, @telefone, @email, @pretensaoSalarial, @cargoPretendido, " +
                          "@formacaoAcademica1, @formacaoAcademica2, @formacaoAcademica3, @formacaoAcademica4, @formacaoAcademica5," +
                          "@experiencia1, @experiencia2, @experiencia3, @idiomas) ";
-            HelperDAO.ExecutaSQL(sql, CriaParametros(jogo));
+            HelperDAO.ExecutaSQL(sql, CriaParametros(cv));
         }
 
         public void Alterar(CurriculoViewModel cv)
@@ -55,7 +57,7 @@ namespace N2_1BIM_LP1.DAO
                             "telefone = @telefone, " +
                             "email = @email, " +
                             "pretensaoSalarial = @pretensaoSalarial, " +
-                            "cargoPretendido = @cargoPretendido, " +
+                            "cargoPretentido = @cargoPretendido, " +
                             "formacaoAcademica1 = @formacaoAcademica1, " +
                             "formacaoAcademica2 = @formacaoAcademica2, " +
                             "formacaoAcademica3 = @formacaoAcademica3, " +
@@ -110,7 +112,7 @@ namespace N2_1BIM_LP1.DAO
             return cv;
         }
 
-        public List<CurriculoViewModel> ListaJogos()
+        public List<CurriculoViewModel> ListaCurriculos()
         {
             using (var cx = ConexaoBD.GetConexao())
             {
@@ -126,6 +128,18 @@ namespace N2_1BIM_LP1.DAO
                 }
                 return lista_de_curriculos;
             }
+        }
+
+        /// <summary>
+        /// Esta função substitui todos os campos que porventura estejam como NULL por uma String.Empty,
+        /// para não dar erro na inserção no banco.
+        /// </summary>
+        /// <param name="sqlParameters"></param>
+        private void SubstituiNULL (ref SqlParameter[] sqlParameters)
+        {
+            for (int i = 0; i < sqlParameters.Length; i++)
+                if (sqlParameters[i].Value == null)
+                    sqlParameters[i].Value = String.Empty;
         }
     }
 }
