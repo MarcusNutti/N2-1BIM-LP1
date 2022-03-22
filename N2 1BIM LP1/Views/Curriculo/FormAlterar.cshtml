@@ -1,0 +1,70 @@
+﻿@model CurriculoViewModel 
+
+<form asp-action="ConfirmarAlteracao">
+    <label class="form-label"> CPF </label>
+    <input type="number" name="cpf" class="form-control"  value="@Model.Cpf"/>
+    <br />
+
+    <label class="form-label"> Nome </label>
+    <input type="text" name="nome" class="form-control" value="@Model.Nome"/>
+    <br />
+
+    <label class="form-label"> Endereço </label>
+    <input type="text" name="endereco" class="form-control" value="@Model.Endereco"/>
+    <br />
+
+    <label class="form-label"> Telefone </label>
+    <input type="text" name="telefone" class="form-control" value="@Model.Telefone"/>
+    <br />
+
+    <label class="form-label"> E-mail </label>
+    <input type="text" name="email" class="form-control" value="@Model.Email" />
+    <br />
+
+    <label class="form-label"> Pretensão Salarial </label>
+    <input type="text" name="pretensaoSalarial" class="form-control" value="@Model.PretensaoSalarial"/>
+    <br />
+
+    <label class="form-label"> Cargo Pretendido </label>
+    <input type="text" name="cargoPretendido" class="form-control" value="@Model.CargoPretendido"/>
+    <br />
+
+    <label class="form-label"> Formação Acadêmica 1 </label>
+    <input type="text" name="formacaoAdademica1" class="form-control" value="@Model.FormacaoAcademica1"/>
+    <br />
+
+    <label class="form-label"> Formação Acadêmica 2 </label>
+    <input type="text" name="formacaoAdademica2" class="form-control" value="@Model.FormacaoAcademica2"/>
+    <br />
+
+    <label class="form-label"> Formação Acadêmica 3 </label>
+    <input type="text" name="formacaoAdademica3" class="form-control" value="@Model.FormacaoAcademica3"/>
+    <br />
+
+    <label class="form-label"> Formação Acadêmica 4 </label>
+    <input type="text" name="formacaoAdademica4" class="form-control" value="@Model.FormacaoAcademica4"/>
+    <br />
+
+    <label class="form-label"> Formação Acadêmica 5 </label>
+    <input type="text" name="formacaoAdademica5" class="form-control" value="@Model.FormacaoAcademica5"/>
+    <br />
+
+    <label class="form-label"> Experiência 1 </label>
+    <input type="text" name="experiencia1" class="form-control" value="@Model.Experiencia1"/>
+    <br />
+
+    <label class="form-label"> Experiência 2 </label>
+    <input type="text" name="experiencia2" class="form-control" value="@Model.Experiencia2"/>
+    <br />
+
+    <label class="form-label"> Experiência 3 </label>
+    <input type="text" name="experiencia3" class="form-control" value="@Model.Experiencia3"/>
+    <br />
+
+    <label class="form-label"> Idiomas </label>
+    <input type="text" name="idiomas" class="form-control" value="@Model.Idiomas"/>
+    <br />
+
+    <input type="submit" value="Confirmar Alterações" class="btn btn-info" />
+    <br />
+</form>

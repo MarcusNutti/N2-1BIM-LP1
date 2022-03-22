@@ -46,7 +46,7 @@ namespace N2_1BIM_LP1
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Curriculo}/{action=FormCadastro}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

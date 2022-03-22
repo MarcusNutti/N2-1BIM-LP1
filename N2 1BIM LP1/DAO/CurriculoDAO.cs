@@ -35,11 +35,10 @@ namespace N2_1BIM_LP1.DAO
 
             return parametros;
         }
-
         public void Inserir(CurriculoViewModel cv)
         {
             string sql = "insert into curriculos" +
-                         "(cpf, nome, endereco, telefone, email, pretensaoSalarial, cargoPretentido, " +
+                         "(cpf, nome, endereco, telefone, email, pretensaoSalarial, cargoPretendido, " +
                          "formacaoAcademica1, formacaoAcademica2, formacaoAcademica3, formacaoAcademica4, formacaoAcademica5," +
                          "experiencia1, experiencia2, experiencia3, idiomas) " +
                          "values " +
@@ -48,16 +47,14 @@ namespace N2_1BIM_LP1.DAO
                          "@experiencia1, @experiencia2, @experiencia3, @idiomas) ";
             HelperDAO.ExecutaSQL(sql, CriaParametros(cv));
         }
-
         public void Alterar(CurriculoViewModel cv)
         {
             string sql = "update curriculos set " +
-                            "cpf = @cpf ," +
                             "nome = @nome, " +
                             "telefone = @telefone, " +
                             "email = @email, " +
                             "pretensaoSalarial = @pretensaoSalarial, " +
-                            "cargoPretentido = @cargoPretendido, " +
+                            "cargoPretendido = @cargoPretendido, " +
                             "formacaoAcademica1 = @formacaoAcademica1, " +
                             "formacaoAcademica2 = @formacaoAcademica2, " +
                             "formacaoAcademica3 = @formacaoAcademica3, " +
@@ -66,16 +63,15 @@ namespace N2_1BIM_LP1.DAO
                             "experiencia1 = @experiencia1, " +
                             "experiencia2 = @experiencia2, " +
                             "experiencia3 = @experiencia3, " +
-                            "idiomas = @idiomas";
+                            "idiomas = @idiomas " +
+                            "where cpf = " + cv.Cpf;
             HelperDAO.ExecutaSQL(sql, CriaParametros(cv));
         }
-
         public void Excluir(string cpf)
         {
-            string sql = "delete curriculos where cpf =" + cpf;
+            string sql = "delete from curriculos where cpf =" + cpf;
             HelperDAO.ExecutaSQL(sql, null);
         }
-
         public CurriculoViewModel Consultar(string cpf)
         {
             using (SqlConnection cx = ConexaoBD.GetConexao())
@@ -88,7 +84,6 @@ namespace N2_1BIM_LP1.DAO
                     return MontaModel(tabela.Rows[0]);
             }
         }
-
         public static CurriculoViewModel MontaModel(DataRow registro)
         {
             CurriculoViewModel cv = new CurriculoViewModel();
@@ -98,7 +93,7 @@ namespace N2_1BIM_LP1.DAO
             cv.Telefone = Convert.ToString(registro["telefone"]);
             cv.Email = Convert.ToString(registro["email"]);
             cv.PretensaoSalarial = Convert.ToSingle(registro["pretensaoSalarial"]);
-            cv.CargoPretendido = Convert.ToString(registro["cargoPretentido"]); /* pus errado aqui, pois é assim que está no banco, para consertar despois devemos primeiro mudar o banco */
+            cv.CargoPretendido = Convert.ToString(registro["cargoPretendido"]);
             cv.FormacaoAcademica1 = Convert.ToString(registro["formacaoAcademica1"]);
             cv.FormacaoAcademica2 = Convert.ToString(registro["formacaoAcademica2"]);
             cv.FormacaoAcademica3 = Convert.ToString(registro["formacaoAcademica3"]);
@@ -111,7 +106,6 @@ namespace N2_1BIM_LP1.DAO
 
             return cv;
         }
-
         public List<CurriculoViewModel> ListaCurriculos()
         {
             using (var cx = ConexaoBD.GetConexao())
@@ -129,7 +123,6 @@ namespace N2_1BIM_LP1.DAO
                 return lista_de_curriculos;
             }
         }
-
         /// <summary>
         /// Esta função substitui todos os campos que porventura estejam como NULL por uma String.Empty,
         /// para não dar erro na inserção no banco.
