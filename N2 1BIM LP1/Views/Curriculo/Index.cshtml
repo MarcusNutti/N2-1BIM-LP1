@@ -1,47 +1,33 @@
 ﻿@model List<CurriculoViewModel>;
 
-<h2>Listagem de Currículos</h2>
+<h2 class="text-center">Listagem de Currículos</h2>
 <br />
 
-<table class="table table-striped table-responsive">
-    <tr>
-        <th>CPF</th>
-        <th>Nome</th>
-        <th>Endereço</th>
-        <th>Telefone</th>
-        <th>Email</th>
-        <th>Pretensão Salarial</th>
-        <th>Objetivo</th>
-        <th>Formação Acadêmica</th>
-        <th>Formação Acadêmica</th>
-        <th>Formação Acadêmica</th>
-        <th>Formação Acadêmica</th>
-        <th>Formação Acadêmica</th>
-        <th>Experiencia</th>
-        <th>Experiência</th>
-        <th>Experiência</th>
-        <th>Idiomas</th>
-    </tr>
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table id="table" class="table table-striped table-responsive">
+            <tr>
+                <th>CPF</th>
+                <th>Nome</th>
+            </tr>
 
-    @foreach (var cv in Model)
-    {
-        <tr>
-            <td> @cv.Cpf </td>
-            <td> @cv.Nome </td>
-            <td> @cv.Endereco </td>
-            <td> @cv.Telefone </td>
-            <td> @cv.Email </td>
-            <td> @cv.PretensaoSalarial </td>
-            <td> @cv.CargoPretendido </td>
-            <td> @cv.FormacaoAcademica1 </td>
-            <td> @cv.FormacaoAcademica2 </td>
-            <td> @cv.FormacaoAcademica3 </td>
-            <td> @cv.FormacaoAcademica4 </td>
-            <td> @cv.FormacaoAcademica5 </td>
-            <td> @cv.Experiencia1 </td>
-            <td> @cv.Experiencia2 </td>
-            <td> @cv.Experiencia3 </td>
-            <td> @cv.Idiomas </td>
-        </tr>
-    }
-</table>
+            @foreach (var cv in Model)
+            {
+                <tr>
+                    <td>@cv.Cpf</td>
+                    <td>@cv.Nome </td>
+                </tr>
+            }
+        </table>
+
+        <form asp-action="Alterar">
+            <input type="hidden" name="valorCPF" id="txtDataSwapA">
+            <input type="submit" value="Alterar" class="btn-info"/>
+        </form>
+        <br/>
+        <form asp-action="Excluir">
+            <input type="hidden" name="valorCPF" id="txtDataSwapB">
+            <input type="submit" value="Excluir" class="btn-danger"/>
+        </form>
+    </div>
+</div>
